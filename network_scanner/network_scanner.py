@@ -5,7 +5,9 @@ import scapy.all as scapy
 
 
 def scan(ip):
-    scapy.arping(ip)
+    arp_request = scapy.ARP(pdst=ip)
+    print(arp_request.summary())
+    scapy.ls(scapy.ARP())  # List all the fields we can set
 
 
-scan("192.168.180.0/24")
+scan("192.168.180.1/24")
