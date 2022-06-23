@@ -6,8 +6,8 @@ import scapy.all as scapy
 
 def scan(ip):
     arp_request = scapy.ARP(pdst=ip)
-    print(arp_request.summary())
-    scapy.ls(scapy.ARP())  # List all the fields we can set
+    broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+    print(broadcast.summary())
 
 
-scan("192.168.180.1/24")
+scan("192.168.180.9")
