@@ -8,9 +8,14 @@ def scan(ip):
     arp_request = scapy.ARP(pdst=ip)
     broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
     arp_request_broadcast = broadcast/arp_request
-    # with this function we send packets and receive the answer
-    answered, unanswered = scapy.srp(arp_request_broadcast, timeout=1)
-    print(unanswered.summary())
+    # with this function, scapy.srp() we send packets and receive the answer
+    # [0] is set as we need just the first list only.
+    answered_list = scapy.srp(arp_request_broadcast, timeout=1)[0]
+
+    for element in answered_list:
+        print(element[1].psrc)
+        print(element[1].hwsrc)
+        print("--------------------------------------")
 
 
 scan("192.168.180.1/24")
