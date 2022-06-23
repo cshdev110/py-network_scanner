@@ -2,13 +2,13 @@
 
 # The script needs to be executed as superuser.
 import scapy.all as scapy
-from optparse import OptionParser
+import argparse
 
 
 def get_arguments():
-    parser = OptionParser()
-    parser.add_option("-t", "--target", dest="ip_targets", help="Range of IPs to check out")
-    return parser.parse_args()[0]
+    parser = argparse.ArgumentParser(description="Network Scanner")
+    parser.add_argument("-t", "--target", dest="ip_targets", help="Range of IPs to check out")
+    return parser.parse_args()
 
 
 def scan(ip):
